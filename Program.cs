@@ -1,7 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+using System.IO;
 using System.Linq;
 
-using System.Security.Cryptography;
 
 string[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
 string[] cd = new String[] { "A", "B" };
@@ -23,18 +24,62 @@ public class StockList
     
     В результирующих кодах и их значениях тот же порядок, что и в lstOf1stLetter.
      */
+
+
     public static string stockSummary(String[] lstOfArt, String[] lstOf1stLetter)
     {
+        string result = String.Empty;
+        int number;
+        Dictionary<string, int> dic = new Dictionary<string, int>();
+
+
+
+
+        foreach (var pair in lstOfArt)
+        {
+            string[] str = pair.Split(" ");
+
+            if (str.Length == 2)
+            {
+                string key = str[0];
+                int value = int.Parse(str[1]);
+                dic[key] = value; // запись в словарь
+            }
+                    }
+        foreach (var item in lstOf1stLetter)
+        {
+            var a = dic.Keys.Where(x => x.StartsWith(item));
+        }
+        
+
+
+
+        foreach (var item in dic)
+        {
+   
+
+
+            Console.WriteLine($"Key:[{item.Key}] Value:[{item.Value}]");
+        }
+        return result;
+    }
+
+
+
+
+
+    public static string stockSummary1(String[] lstOfArt, String[] lstOf1stLetter)
+    {
         string rezult = String.Empty;
-        var listInt = new List<int>(); 
-        var listStr = new List<string>(); 
+        var listInt = new List<int>();
+        var listStr = new List<string>();
         foreach (var item in lstOfArt)
         {
             //Console.WriteLine(item);
-         
+
             int number;
             string[] str = item.Split(" ");
-          
+
 
 
             foreach (var num in str)
@@ -45,23 +90,31 @@ public class StockList
             }
 
         }
-        foreach (var item in listInt)   Console.WriteLine(item);
-      
+        foreach (var item in listInt) Console.WriteLine(item);
 
 
 
-    //listStr.Select(x => $"{i++}. {x}");
-                //.Select(int.Parse).Count(c => c is >= 0 and <= 255) == 4;
-                //Select(x => $"{i++}. {x}")
 
-            for (int i = 0; i<listInt.Count; i++)
+        //listStr.Select(x => $"{i++}. {x}");
+        //.Select(int.Parse).Count(c => c is >= 0 and <= 255) == 4;
+        //Select(x => $"{i++}. {x}")
+        int[] arr = new int[listInt.Count];
+        for (int i = 0; i < listInt.Count; i++)
+        {
+
+            // добавить в массив далее просумировать элементы массива
+            if (listStr[i].StartsWith(lstOf1stLetter[i]))
             {
-            if (listStr[i].StartsWith(lstOf1stLetter[i])) Console.WriteLine(listInt[i]);
+                arr[i] = listInt[i];
             }
 
+
+            rezult = $"{listInt[i]}";
+        }
+        return rezult;
     }
-            //var a = from n in str
-            //     where  n    
+    //var a = from n in str
+    //     where  n    
 
 
 
