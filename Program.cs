@@ -6,8 +6,8 @@ using System.Net.WebSockets;
 using System.Text;
 
 
-string[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
-string[] cd = new String[] { "A", "B" };
+string[] art = new string[] { "ABART 20", "CDXEF 50", "BKWRK 25", "BTSQZ 89", "DRTYM 60" };
+string[] cd = new String[] { "A", "B", "C", "W" };
 
 Console.WriteLine($"Hello, World! {StockList.stockSummary(art, cd)}");
 
@@ -70,7 +70,7 @@ public class StockList
 
 
 
-        result = sb.ToString().Trim('-'); // обрезать первые два знака
+        result = sb.ToString().Trim().TrimStart('-'); // обрезать первые два знака
         return result;
 
 
