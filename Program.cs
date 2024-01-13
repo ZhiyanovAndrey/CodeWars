@@ -25,18 +25,23 @@ public class StockList
      * где A, B, C, W — категории, 20 — сумма уникальной книги категории A, 114 — сумма, соответствующая «BKWRK» и «BTSQZ», 50 — «CDXEF» и 0 — категории «W». поскольку нет кода, начинающегося с W.
     
     В результирующих кодах и их значениях тот же порядок, что и в lstOf1stLetter.
+
+    System.ArgumentOutOfRangeException : Index and count must refer to a location within the string. (Parameter 'count')
+       at System.String.Remove(Int32 startIndex, Int32 count)
+   at StockList.stockSummary(String[] lstOfArt, String[] lstOf1stLetter)
+   at StockListTests.Test5()
+
      */
 
 
     public static string stockSummary(String[] lstOfArt, String[] lstOf1stLetter)
     {
+        if (lstOfArt.Length != 0)
+        {
         string result = String.Empty;
-        int number;
         Dictionary<string, int> dic = new Dictionary<string, int>();
 
-
-
-
+        // создаем и записываем словарь
         foreach (var pair in lstOfArt)
         {
             string[] str = pair.Split(" ");
@@ -45,7 +50,7 @@ public class StockList
             {
                 string key = str[0];
                 int value = int.Parse(str[1]);
-                dic[key] = value; // запись в словарь
+                dic[key] = value; 
             }
         }
 
@@ -53,27 +58,21 @@ public class StockList
         StringBuilder sb = new StringBuilder();
         List<int> list = new List<int>();
         
-        //foreach (var part in dic)
-        //{
-            int sum = 0;
+             int sum = 0;
             foreach (var category in lstOf1stLetter)
             {
                 List<string> listKeys = dic.Keys.Where(x => x.StartsWith(category)).ToList(); // выбор ключей из словаря
-                List<int> listValues = dic.Where(key => listKeys.Contains(key.Key)).Select(x=>x.Value).ToList(); // выбор ключей из словаря
-
-              
+                List<int> listValues = dic.Where(key => listKeys.Contains(key.Key)).Select(x=>x.Value).ToList(); // выбор значений из списка
 
                 sum = listValues.Sum(x => x);
 
                 sb.Append($" - ({category} : {sum})");
             }
 
-
-
-        result = sb.ToString().Trim().TrimStart('-'); // обрезать первые два знака
+        result = sb.ToString().Remove(0,3); 
         return result;
-
-
+        }
+        return string.Empty;
     }
 
         //List<int> listValues = dic.Values.Select(v => dic[v]).Where(x => x.StartsWith(category)).ToList();
