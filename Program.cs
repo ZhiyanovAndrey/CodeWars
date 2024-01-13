@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Net.WebSockets;
+using System.Text;
 
 
 string[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
@@ -45,24 +47,65 @@ public class StockList
                 int value = int.Parse(str[1]);
                 dic[key] = value; // запись в словарь
             }
-                    }
-        foreach (var item in lstOf1stLetter)
-        {
-            var a = dic.Keys.Where(x => x.StartsWith(item));
         }
+
+
+        StringBuilder sb = new StringBuilder();
+        List<int> list = new List<int>();
         
+        //foreach (var part in dic)
+        //{
+            int sum = 0;
+            foreach (var category in lstOf1stLetter)
+            {
+                List<string> listKeys = dic.Keys.Where(x => x.StartsWith(category)).ToList(); // выбор ключей из словаря
+                List<int> listValues = dic.Where(key => listKeys.Contains(key.Key)).Select(x=>x.Value).ToList(); // выбор ключей из словаря
+
+              
+
+                sum = listValues.Sum(x => x);
+
+                sb.Append($" - ({category} : {sum})");
+            }
 
 
 
-        foreach (var item in dic)
-        {
-   
-
-
-            Console.WriteLine($"Key:[{item.Key}] Value:[{item.Value}]");
-        }
+        result = sb.ToString().Trim('-'); // обрезать первые два знака
         return result;
+
+
     }
+
+        //List<int> listValues = dic.Values.Select(v => dic[v]).Where(x => x.StartsWith(category)).ToList();
+        //List<int> listValus = listKeys.AddRange(dic.Values); // преобразовать список ключей в список значений
+        //List<int> listValues = listKeys.Where(x => x.StartsWith(category)).ToList(); // выбор ключей из словаря
+        //}
+        //int sum = 0;
+
+        //foreach (var item in dic)
+        //{
+
+        //    foreach (var item1 in lstOf1stLetter)
+        //    {
+        //        if (item.Key.StartsWith(item1)) // суммируем все совпадения и записываем в строку 
+        //        {
+        //            list.Add(item.Value);
+        //            sum = list.Sum(x => x);
+
+        //            sb.Append($" - ({item1} : {sum})");
+
+        //        }
+
+
+
+        //    }
+
+
+        //    Console.WriteLine($"Key:[{item.Key}] Value:[{item.Value}]");
+        //}
+
+
+
 
 
 
