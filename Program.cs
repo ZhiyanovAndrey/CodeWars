@@ -27,7 +27,8 @@ public class StockList
     В результирующих кодах и их значениях тот же порядок, что и в lstOf1stLetter.
 
     System.ArgumentOutOfRangeException : Index and count must refer to a location within the string. (Parameter 'count')
-       at System.String.Remove(Int32 startIndex, Int32 count)
+   
+    at System.String.Remove(Int32 startIndex, Int32 count)
    at StockList.stockSummary(String[] lstOfArt, String[] lstOf1stLetter)
    at StockListTests.Test5()
 
