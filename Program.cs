@@ -39,70 +39,73 @@ public class StockList
     {
         if (lstOfArt.Length != 0)
         {
-        string result = String.Empty;
-        Dictionary<string, int> dic = new Dictionary<string, int>();
+            string result = String.Empty;
+            Dictionary<string, int> dic = new Dictionary<string, int>();
 
-        // создаем и записываем словарь
-        foreach (var pair in lstOfArt)
-        {
-            string[] str = pair.Split(" ");
-
-            if (str.Length == 2)
+            // создаем и записываем словарь
+            foreach (var pair in lstOfArt)
             {
-                string key = str[0];
-                int value = int.Parse(str[1]);
-                dic[key] = value; 
+                string[] str = pair.Split(" ");
+
+                if (str.Length == 2)
+                {
+                    string key = str[0];
+                    int value = int.Parse(str[1]);
+                    dic[key] = value;
+                }
             }
-        }
 
 
-        StringBuilder sb = new StringBuilder();
-        List<int> list = new List<int>();
-        
-             int sum = 0;
+            StringBuilder sb = new StringBuilder();
+            List<int> list = new List<int>();
+            int count = 0;
+            int sum = 0;
             foreach (var category in lstOf1stLetter)
             {
                 List<string> listKeys = dic.Keys.Where(x => x.StartsWith(category)).ToList(); // выбор ключей из словаря
-                List<int> listValues = dic.Where(key => listKeys.Contains(key.Key)).Select(x=>x.Value).ToList(); // выбор значений из списка
+                List<int> listValues = dic.Where(key => listKeys.Contains(key.Key)).Select(x => x.Value).ToList(); // выбор значений из списка
 
                 sum = listValues.Sum(x => x);
 
-                sb.Append($" - ({category} : {sum})");
+                if (count >= 1) sb.Append(" - ");
+                sb.Append($"({category} : {sum})");
+                count++;
+
             }
 
-        result = sb.ToString().Remove(0,3); 
-        return result;
+            result = sb.ToString();
+            return result;
         }
         return string.Empty;
     }
 
-        //List<int> listValues = dic.Values.Select(v => dic[v]).Where(x => x.StartsWith(category)).ToList();
-        //List<int> listValus = listKeys.AddRange(dic.Values); // преобразовать список ключей в список значений
-        //List<int> listValues = listKeys.Where(x => x.StartsWith(category)).ToList(); // выбор ключей из словаря
-        //}
-        //int sum = 0;
+    //List<int> listValues = dic.Values.Select(v => dic[v]).Where(x => x.StartsWith(category)).ToList();
+    //List<int> listValus = listKeys.AddRange(dic.Values); // преобразовать список ключей в список значений
+    //List<int> listValues = listKeys.Where(x => x.StartsWith(category)).ToList(); // выбор ключей из словаря
+    //}
+    //int sum = 0;
 
-        //foreach (var item in dic)
-        //{
+    //foreach (var item in dic)
+    //{
 
-        //    foreach (var item1 in lstOf1stLetter)
-        //    {
-        //        if (item.Key.StartsWith(item1)) // суммируем все совпадения и записываем в строку 
-        //        {
-        //            list.Add(item.Value);
-        //            sum = list.Sum(x => x);
+    //    foreach (var item1 in lstOf1stLetter)
+    //    {
+    //        if (item.Key.StartsWith(item1)) // суммируем все совпадения и записываем в строку 
+    //        {
+    //            list.Add(item.Value);
+    //            sum = list.Sum(x => x);
 
-        //            sb.Append($" - ({item1} : {sum})");
+    //            sb.Append($" - ({item1} : {sum})");
 
-        //        }
-
-
-
-        //    }
+    //        }
 
 
-        //    Console.WriteLine($"Key:[{item.Key}] Value:[{item.Value}]");
-        //}
+
+    //    }
+
+
+    //    Console.WriteLine($"Key:[{item.Key}] Value:[{item.Value}]");
+    //}
 
 
 
