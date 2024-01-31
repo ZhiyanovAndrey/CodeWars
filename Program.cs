@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Net.WebSockets;
@@ -34,7 +33,7 @@ public class StockList
 
      */
 
-
+    // мое решение
     public static string stockSummary(String[] lstOfArt, String[] lstOf1stLetter)
     {
         if (lstOfArt.Length != 0)
@@ -79,6 +78,34 @@ public class StockList
         return string.Empty;
     }
 
+    // варианты в одну строку
+
+    public static string stockSummaryDic(String[] lstOfArt, String[] lstOf1stLetter)
+    {
+        if (!lstOfArt.Any() || !lstOf1stLetter.Any())
+            return string.Empty;
+
+        var dictionary = new Dictionary<string, int>();
+
+        foreach (var letter in lstOf1stLetter)
+        {
+            dictionary.Add(letter, lstOfArt.Where(x => x.StartsWith(letter)).Select(x => int.Parse(x.Split(' ')[1])).Sum()); // 
+        }
+        return string.Join(" - ", dictionary.Select(x => $"({x.Key} : {x.Value})"));
+    }
+
+public static string stockSummary1(String[] lstOfArt, String[] lstOf1stLetter)
+    {
+        return lstOfArt.Any()
+
+                ? string.Join(" - ",
+                 lstOf1stLetter.Select(x =>
+                     $"({x} : {lstOfArt.Where(s => s[0] == x[0]).Sum(e => int.Parse(e.Split()[1]))})")) : "";
+    }
+
+    //int sum = lstOfArt.Where(a => a.StartsWith(category)).Select(a => int.Parse(a.Split(' ')[1])).Sum();
+
+    // мои варианты в одну строку
     //List<int> listValues = dic.Values.Select(v => dic[v]).Where(x => x.StartsWith(category)).ToList();
     //List<int> listValus = listKeys.AddRange(dic.Values); // преобразовать список ключей в список значений
     //List<int> listValues = listKeys.Where(x => x.StartsWith(category)).ToList(); // выбор ключей из словаря
@@ -114,7 +141,7 @@ public class StockList
 
 
 
-    public static string stockSummary1(String[] lstOfArt, String[] lstOf1stLetter)
+    public static string stockSummary2(String[] lstOfArt, String[] lstOf1stLetter)
     {
         string rezult = String.Empty;
         var listInt = new List<int>();

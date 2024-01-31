@@ -153,7 +153,7 @@ namespace Temp
         #endregion
 
 
-        internal static string BreakCamelCase(string str)
+       public static string BreakCamelCase(string str)
         {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
 
