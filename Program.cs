@@ -1,8 +1,5 @@
 ﻿
 
-
-
-
 Stack<int> stack = new Stack<int>();    
 stack.Push(100);
 stack.Push(200);
