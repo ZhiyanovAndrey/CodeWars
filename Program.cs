@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Text;
 
 
 
@@ -8,7 +9,7 @@ using System;
 
 
 
-Console.WriteLine(RomanConvert.Solution(152)); // CLII
+Console.WriteLine(RomanConvert.Solution(188)); // CLII
 
 Console.ReadKey();
 
@@ -19,17 +20,19 @@ public class RomanConvert
         if (n >= 1 && n <= 3999)
         {
 
-            string rezult = string.Empty;
-
-            // разбить цифру на порядки 100 50 10 5
+            string result = string.Empty;
             Stack<int> stack = new Stack<int>();
+            var sb = new StringBuilder();
+
+
+            // разбить цифру на порядки 1000 100 10 0
             while (n > 0)
             {
                 stack.Push(n % 10);
                 n = n / 10;
             }
 
-            Console.WriteLine($"Извлек {stack.Pop()}");
+            //Console.WriteLine($"Извлек {stack.Pop()}");
 
             foreach (var item in stack)
             {
@@ -40,49 +43,48 @@ public class RomanConvert
             {
                 switch (stack.Pop())
                 {
-                    case 1: rezult = "C"; break;
-                    case 2: rezult = "CC"; break;
-                    case 3: rezult = "CCC"; break;
-                    case 4: rezult = "CD"; break;
-                    case 5: rezult = "D"; break;
-                    case 6: rezult = "DC"; break;
-                    case 7: rezult = "DCC"; break;
-                    case 8: rezult = "DCCC"; break;
-                    case 9: rezult = "CM"; break;
+                    case 1: sb.Append("C"); break;
+                    case 2: sb.Append("CC"); break;
+                    case 3: sb.Append( "CCC"); break;
+                    case 4: sb.Append( "CD"); break;
+                    case 5: sb.Append( "D"); break;
+                    case 6: sb.Append( "DC"); break;
+                    case 7: sb.Append( "DCC"); break;
+                    case 8: sb.Append( "DCCC"); break;
+                    case 9: sb.Append( "CM"); break;
                 }
-            return rezult;
-            }
+               }
 
             if (stack.Count == 2) 
             {
                 switch (stack.Pop())
                 {
                     //case 1: rezult = "X"; break;
-                    case 2: rezult = "XX"; break;
-                    case 3: rezult = "XXX"; break;
-                    case 4: rezult = "XL"; break;
-                    case 5: rezult = "L"; break;
-                    case 6: rezult = "LX"; break;
-                    case 7: rezult = "LXX"; break;
-                    case 8: rezult = "LXXX"; break;
-                    case 9: rezult = "XC"; break;
+                    case 2: sb.Append( "XX"); break;
+                    case 3: sb.Append( "XXX"); break;
+                    case 4: sb.Append( "XL"); break;
+                    case 5: sb.Append( "L"); break;
+                    case 6: sb.Append( "LX"); break;
+                    case 7: sb.Append( "LXX"); break;
+                    case 8: sb.Append( "LXXX"); break;
+                    case 9: sb.Append( "XC"); break;
                 }
-                return rezult;
+              
             }
 
             if (stack.Count == 1 )
             {
                 switch (stack.Pop())
                 {
-                    case 1: rezult = "I"; break;
-                    case 2: rezult = "II"; break;
-                    case 3: rezult = "III"; break;
-                    case 4: rezult = "IV"; break;
-                    case 5: rezult = "V"; break;
-                    case 6: rezult = "VI"; break;
-                    case 7: rezult = "VII"; break;
-                    case 8: rezult = "VIII"; break;
-                    case 9: rezult = "IX"; break;
+                    case 1: sb.Append( "I"); break;
+                    case 2: sb.Append( "II"); break;
+                    case 3: sb.Append( "III"); break;
+                    case 4: sb.Append( "IV"); break;
+                    case 5: sb.Append( "V"); break;
+                    case 6: sb.Append( "VI"); break;
+                    case 7: sb.Append( "VII"); break;
+                    case 8: sb.Append( "VIII"); break;
+                    case 9: sb.Append( "IX"); break;
                     //case 10: rezult = "X"; break;
                     //case 11: rezult = "XI"; break;
                     //case 12: rezult = "XII"; break;
@@ -92,7 +94,7 @@ public class RomanConvert
                     //case 16: rezult = "IX"; break;
                 }
             }
-            return rezult;
+            return sb.ToString();
 
 
 
