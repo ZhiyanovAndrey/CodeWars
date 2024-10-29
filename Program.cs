@@ -1,4 +1,7 @@
-﻿
+﻿using System.Diagnostics;
+using System;
+
+
 
 
 B obj1 = (B)new A(); // не удается неявно преобразовать

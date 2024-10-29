@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes", "Classes.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "..\Delegate\Delegate.csproj", "{EEFB46A7-C949-46B0-B2D1-594E292F52ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Struct", "..\Struct\Struct.csproj", "{9A76EC06-BB9B-445B-A84B-DF5163B266CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesWithDelay", "..\ClassesWithWait\ClassesWithDelay.csproj", "{2B2AC345-14B6-415A-BBD9-D17180378BF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{EEFB46A7-C949-46B0-B2D1-594E292F52ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEFB46A7-C949-46B0-B2D1-594E292F52ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEFB46A7-C949-46B0-B2D1-594E292F52ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A76EC06-BB9B-445B-A84B-DF5163B266CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A76EC06-BB9B-445B-A84B-DF5163B266CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A76EC06-BB9B-445B-A84B-DF5163B266CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A76EC06-BB9B-445B-A84B-DF5163B266CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B2AC345-14B6-415A-BBD9-D17180378BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B2AC345-14B6-415A-BBD9-D17180378BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B2AC345-14B6-415A-BBD9-D17180378BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B2AC345-14B6-415A-BBD9-D17180378BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
